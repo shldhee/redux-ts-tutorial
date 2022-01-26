@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { RootState } from '../types'
+import { SubscribersState } from '../types'
 
 type Props = ReturnType<typeof mapStateToProps>
 
@@ -11,9 +11,19 @@ const Display: React.FC<Props> = ({ count }) => {
   )
 }
 
-const mapStateToProps = (state: RootState) => {
+// const mapStateToProps = (state: RootState) => {
+//   return {
+//     count: state.subscribers.count,
+//   }
+// }
+
+const mapStateToProps = ({
+  subscribers,
+}: {
+  subscribers: SubscribersState
+}) => {
   return {
-    count: state.subscribers.count,
+    count: subscribers.count,
   }
 }
 
