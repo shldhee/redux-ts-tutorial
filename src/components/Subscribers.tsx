@@ -1,21 +1,42 @@
 import { connect } from 'react-redux'
-import { SubscribersState } from '../types'
+import { Dispatch } from 'redux'
+import { SubscribersAction, SubscribersState } from '../types'
+import { addSubscriber } from '../redux/subscribers/actions'
 
-const Subscribers: React.FC<SubscribersState> = ({ count }) => {
+// interface Props {
+//   count: number
+//   addSubscriber: () => AppDispatch
+// }
+
+// type Props = ReturnType<typeof mapStateToProps> &
+//   ReturnType<typeof mapDispatchToProps> & {
+//     label: string;
+//   };
+
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>
+
+const Subscribers: React.FC<Props> = ({ count, addSubscriber }) => {
   return (
     <>
       <div className='items'>
         <h2>구독자 수 : {count}</h2>
-        <button>구독하기</button>
+        <button onClick={() => addSubscriber()}>구독하기</button>
       </div>
     </>
   )
 }
 
-const mapstateToProps = (state: SubscribersState) => {
+const mapStateToProps = (state: SubscribersState) => {
   return {
     count: state.count,
   }
 }
 
-export default connect(mapstateToProps)(Subscribers)
+const mapDispatchToProps = (dispatch: Dispatch<SubscribersAction>) => {
+  return {
+    addSubscriber: () => dispatch(addSubscriber()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Subscribers)
