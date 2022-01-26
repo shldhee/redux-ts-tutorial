@@ -1,5 +1,6 @@
 import store from './redux/store'
 import { addSubscriber, removeSubscriber } from './redux/subscribers/actions'
+import { addView } from './redux/views/actions'
 
 export type SubscribersState = {
   count: number
@@ -21,3 +22,8 @@ export type SubscribersAction =
   | ReturnType<typeof removeSubscriber>
 
 export type AppDispatch = typeof store.dispatch
+
+export type ViewsState = {
+  count: number
+}
+export type ViewsAction = ReturnType<typeof addView>
