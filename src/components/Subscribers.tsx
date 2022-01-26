@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { SubscribersState } from '../types'
+import { RootState } from '../types'
 import { addSubscriber } from '../redux/subscribers/actions'
 
 // interface Props {
@@ -25,9 +25,11 @@ const Subscribers: React.FC<Props> = ({ count, addSubscriber }) => {
   )
 }
 
-const mapStateToProps = (state: SubscribersState) => {
+const mapStateToProps = (state: RootState) => {
+  console.log(state)
+  // {subscribers: {…}, views: {…}}subscribers: {count: 370}views: {count: 0}[[Prototype]]: Object
   return {
-    count: state.count,
+    count: state.subscribers.count,
   }
 }
 

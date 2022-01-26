@@ -27,3 +27,8 @@ export type ViewsState = {
   count: number
 }
 export type ViewsAction = ReturnType<typeof addView>
+
+export interface RootState {
+  subscribers: SubscribersState
+  views: ViewsState
+}
