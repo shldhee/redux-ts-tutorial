@@ -1,6 +1,7 @@
 import store from './redux/store'
 import { addSubscriber, removeSubscriber } from './redux/subscribers/actions'
 import { addView } from './redux/views/actions'
+import { fetchComments } from './redux/comments/actions'
 
 export type SubscribersState = {
   count: number
@@ -28,7 +29,14 @@ export type ViewsState = {
 }
 export type ViewsAction = ReturnType<typeof addView>
 
-export interface RootState {
-  subscribers: SubscribersState
-  views: ViewsState
+export type CommentsState = {
+  items: []
 }
+
+export type CommentsAction = ReturnType<typeof fetchComments>
+
+// export interface RootState {
+//   subscribers: SubscribersState
+//   views: ViewsState
+//   comments: CommentsState
+// }

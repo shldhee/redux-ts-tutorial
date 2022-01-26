@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { RootState } from '../types'
+import { RootState } from '../redux/store'
 import { addSubscriber } from '../redux'
 
 // interface Props {
