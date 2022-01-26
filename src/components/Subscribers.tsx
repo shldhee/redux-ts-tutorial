@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import { SubscribersAction, SubscribersState } from '../types'
+import { SubscribersState } from '../types'
 import { addSubscriber } from '../redux/subscribers/actions'
 
 // interface Props {
@@ -13,8 +12,7 @@ import { addSubscriber } from '../redux/subscribers/actions'
 //     label: string;
 //   };
 
-type Props = ReturnType<typeof mapStateToProps> &
-  ReturnType<typeof mapDispatchToProps>
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 const Subscribers: React.FC<Props> = ({ count, addSubscriber }) => {
   return (
@@ -33,10 +31,13 @@ const mapStateToProps = (state: SubscribersState) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<SubscribersAction>) => {
-  return {
-    addSubscriber: () => dispatch(addSubscriber()),
-  }
+// const mapDispatchToProps = (dispatch: Dispatch<SubscribersAction>) => {
+//   return {
+//     addSubscriber: () => dispatch(addSubscriber()),
+//   }
+// }
+const mapDispatchToProps = {
+  addSubscriber,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Subscribers)
