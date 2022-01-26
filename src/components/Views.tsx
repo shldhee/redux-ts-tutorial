@@ -1,15 +1,15 @@
 import { connect } from 'react-redux'
 import { ViewsState } from '../types'
-import { addSubscriber } from '../redux'
+import { addView } from '../redux'
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
-const Views: React.FC<Props> = ({ count, addSubscriber }) => {
+const Views: React.FC<Props> = ({ count, addView }) => {
   return (
     <>
       <div className='items'>
-        <h2>구독자 수 : {count}</h2>
-        <button onClick={() => addSubscriber()}>구독하기</button>
+        <h2>조회수 : {count}</h2>
+        <button onClick={() => addView()}>조회하기</button>
       </div>
     </>
   )
@@ -22,7 +22,7 @@ const mapStateToProps = ({ views }: { views: ViewsState }) => {
 }
 
 const mapDispatchToProps = {
-  addSubscriber,
+  addView,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Views)
