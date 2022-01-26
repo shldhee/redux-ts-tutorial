@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { RootState } from '../types'
-import { addSubscriber } from '../redux/subscribers/actions'
+import { addSubscriber } from '../redux'
 
 // interface Props {
 //   count: number
