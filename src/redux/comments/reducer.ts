@@ -2,14 +2,13 @@
 import { AnyAction } from 'redux'
 
 import {
-  FETCH_COMMENTS,
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_FAILURE,
 } from './types'
 
 const initialState = {
-  items: []!,
+  items: [],
   loading: false,
   err: null,
 }

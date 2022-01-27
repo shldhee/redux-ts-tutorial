@@ -1,11 +1,4 @@
-import {
-  ComponentType,
-  Key,
-  ReactChild,
-  ReactFragment,
-  ReactPortal,
-  useEffect,
-} from 'react'
+import { ComponentType, useEffect } from 'react'
 import { connect, Matching } from 'react-redux'
 import { fetchComments } from '../redux'
 import { RootState } from '../redux/store'
@@ -17,7 +10,14 @@ const Comments: ComponentType<
     { comments: never[]; loading: boolean } & { fetchComments: () => void },
     Props
   >
-> = ({ comments, loading, fetchComments }) => {
+> = ({
+  comments,
+  loading,
+  fetchComments,
+}: Matching<
+  { comments: never[]; loading: boolean } & { fetchComments: () => void },
+  Props
+>) => {
   useEffect(() => {
     fetchComments()
   }, [fetchComments])
@@ -31,12 +31,12 @@ const Comments: ComponentType<
           <p>{comment.email}</p>
           <p>{comment.body}</p>
         </div>
-      )
+      ),
     )
   )
   return (
     <>
-      <div className='comments'>{commentsItems}</div>
+      <div className="comments">{commentsItems}</div>
     </>
   )
 }

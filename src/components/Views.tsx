@@ -5,16 +5,16 @@ import { useCallback, useState } from 'react'
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
-const Views: React.FC<Props> = ({ count, addView }) => {
+const Views: React.FC<Props> = ({ count, addView }: Props) => {
   const [number, setNumber] = useState<number>(1)
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNumber(Number(e.target.value))
   }, [])
   return (
     <>
-      <div className='items'>
+      <div className="items">
         <h2>조회수 : {count}</h2>
-        <input type='number' value={number} onChange={handleChange} />
+        <input type="number" value={number} onChange={handleChange} />
         <button onClick={() => addView(number)}>조회하기</button>
       </div>
     </>

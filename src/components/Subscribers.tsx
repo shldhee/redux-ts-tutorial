@@ -14,10 +14,16 @@ import { addSubscriber } from '../redux'
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
-const Subscribers: React.FC<Props> = ({ count, addSubscriber }) => {
+const Subscribers: React.FC<Props> = ({
+  count,
+  addSubscriber,
+}: {
+  count: number
+  addSubscriber: () => void
+}) => {
   return (
     <>
-      <div className='items'>
+      <div className="items">
         <h2>구독자 수 : {count}</h2>
         <button onClick={() => addSubscriber()}>구독하기</button>
       </div>

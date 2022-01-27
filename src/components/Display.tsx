@@ -3,7 +3,7 @@ import { SubscribersState } from '../types'
 
 type Props = ReturnType<typeof mapStateToProps>
 
-const Display: React.FC<Props> = ({ count }) => {
+const Display: React.FC<Props> = ({ count }: { count: number }) => {
   return (
     <div>
       <h2>구독자 수 : {count}</h2>
