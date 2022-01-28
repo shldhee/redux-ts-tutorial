@@ -1,55 +1,31 @@
-import {
-  ComponentType,
-  Key,
-  ReactChild,
-  ReactFragment,
-  ReactPortal,
-  useEffect,
-} from 'react'
-import { connect, Matching } from 'react-redux'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../hooks'
 import { fetchComments } from '../redux'
-import { RootState } from '../redux/store'
 
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
-
-const Comments: ComponentType<
-  Matching<
-    { comments: never[]; loading: boolean } & { fetchComments: () => void },
-    Props
-  >
-> = ({ comments, loading, fetchComments }) => {
+const Comments: React.FC = () => {
+  const { items, loading } = useAppSelector(state => state.comments)
+  const dispatch = useAppDispatch()
   useEffect(() => {
-    fetchComments()
+    dispatch(fetchComments())
   }, [fetchComments])
   const commentsItems = loading ? (
     <div>is loading....</div>
   ) : (
-    comments.map(
+    items.map(
       (comment: { id: string; name: string; email: string; body: string }) => (
         <div key={comment.id}>
           <h3>{comment.name}</h3>
           <p>{comment.email}</p>
           <p>{comment.body}</p>
         </div>
-      )
+      ),
     )
   )
   return (
     <>
-      <div className='comments'>{commentsItems}</div>
+      <div className="comments">{commentsItems}</div>
     </>
   )
 }
 
-const mapStateToProps = ({ comments }: { comments: RootState['comments'] }) => {
-  return {
-    comments: comments.items,
-    loading: comments.loading,
-  }
-}
-
-const mapDispatchToProps = {
-  fetchComments,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comments)
+export default Comments
